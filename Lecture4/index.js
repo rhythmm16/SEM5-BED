@@ -4,7 +4,7 @@ let products=[{
     amount:70000,
     quantity:10
 },{
-    name:"iPhone 14",   
+    name:"IPhone 16",   
     amount:100000,
     quantity:1
 }]
@@ -26,7 +26,7 @@ function buyProduct(product_name,callback) {
    //implement for loop to find product in an array
    //find product object from products array whose name is equal to product_name
    for(let i=0;i<products.length;i++){
-        console.log(products[i].name==product_name);
+        //console.log(products[i].name==product_name);
         if(products[i].name==product_name){
             isprodcut=products[i];
         }
@@ -35,18 +35,22 @@ if(!isprodcut){
     callback("Product not available",null);
 }else{
     callback(null,isprodcut.amount);
+    callback(null,isprodcut.amount);
 }
-
-function (amount,callback) 
+}
+function deductAmount(amount,cb){
     if(amount>account_balance){
-        callback("Insufficient balance",null);
-    }      else{
+        cb("your account balanace is low",null)
+    }else{
         account_balance-=amount;
-        callback(null,"your product has been purchased successfully");
+        cb(null,"your product is purchased")
+        
     }
+
 }
 
-buyProduct("iphone 14",function(err,amount){
+
+buyProduct("Iphone 16",function(err,amount){
     // console.log("Order placed for iPhone 14 Pro Max");
     if(err) return console.log(err);
     console.log(amount)
