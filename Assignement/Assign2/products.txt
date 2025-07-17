@@ -1,0 +1,6 @@
+laptop,999.99,High-performance laptop with 16GB RAM and 512GB SSD
+phone,599.99,Latest smartphone with dual camera and 128GB storage
+headphones,149.99,Wireless noise-cancelling headphones
+tablet,399.99,10-inch tablet with 64GB storage
+watch,249.99,Smart watch with fitness tracking features
+speaker,79.99,Bluetooth portable speaker
