@@ -1,22 +1,22 @@
 [
   {
     "id": 1,
-    "username": "john_doe",
-    "email": "john@example.com",
+    "username": "rhythm",
+    "email": "rhythm@example.com",
     "address": "123 Main St, City",
     "balance": 1000
   },
   {
     "id": 2,
-    "username": "jane_smith",
-    "email": "jane@example.com",
+    "username": "rudra",
+    "email": "rudra@example.com",
     "address": "456 Oak Ave, Town",
     "balance": 1500
   },
   {
     "id": 3,
-    "username": "bob_jones",
-    "email": "bob@example.com",
+    "username": "pari",
+    "email": "pari@example.com",
     "address": "789 Pine Rd, Village",
     "balance": 800
   }
