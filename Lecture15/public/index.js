@@ -1,3 +1,5 @@
+const { sign } = require("crypto");
+
 const signupForm = document.querySelector('#signup');
 const loginForm = document.querySelector('#email');
 const password= document.querySelector('#password');
@@ -19,10 +21,21 @@ function addUser(email,password){
 })
 .then((data) => {
     console.log(data);
+    if(data.success) {
+        alert(data.message);
+        signupForm.reset();
+    } else {
+        alert(data.error)
+        signupForm.reset();
+    }
 })
 .catch((err) => {
     console.error(err);
 })
 
 }
-addUser("rhythm161203@gmail.com", "rhythm123");
+signupForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    addUser(email.value, password.value);
+    
+}
