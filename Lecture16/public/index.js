@@ -18,9 +18,17 @@ async function getCommentData() {
 getCommentData();
 
 function adduser(email,password){
-    axios.post('/user', {
+    console.log("bbbbb");
+    axios.post('http://localhost:3000/user', {
         email: email,
         password: password
   })
-
+    .then(()=>{
+        console.log(response.data);
+    })
+    .catch((error)=>{
+        console.log(error.message);
+    })
+    
 }
+adduser("test@example.com", "password123");
