@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login System</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(120deg, #a1c4fd, #c2e9fb);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #333;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .form-control {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        input {
+            background-color: #f6f6f6;
+            border: none;
+            padding: 12px 15px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus {
+            background-color: #fff;
+            box-shadow: 0 0 0 2px #a1c4fd;
+        }
+        
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+        
+        button {
+            border: none;
+            border-radius: 5px;
+            padding: 12px 0;
+            width: 48%;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        button.login {
+            background-color: #4e73df;
+            color: white;
+        }
+        
+        button.logout {
+            background-color: #858796;
+            color: white;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .message {
+            margin-top: 1.5rem;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .success {
+            background-color: #e0f7ea;
+            color: #1cc88a;
+            border-left: 4px solid #1cc88a;
+        }
+        
+        .error {
+            background-color: #fee2e2;
+            color: #e74a3b;
+            border-left: 4px solid #e74a3b;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome Back</h2>
+        <div class="form-control">
+            <input id="username" placeholder="Username" autocomplete="off">
+        </div>
+        <div class="form-control">
+            <input id="password" type="password" placeholder="Password">
+        </div>
+        <div class="btn-group">
+            <button class="login" onclick="login()">Login</button>
+            <button class="logout" onclick="logout()">Logout</button>
+        </div>
+        <div id="msg" class="message hidden"></div>
+    </div>
+
+    <script>
+        function login() {
+            const msgElement = document.getElementById('msg');
+            
+            axios.post('/login', {
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value
+            })
+            .then(res => {
+                msgElement.innerText = res.data.message;
+                msgElement.className = 'message success';
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            })
+            .catch(err => {
+                msgElement.innerText = err.response.data.message;
+                msgElement.className = 'message error';
+            });
+        }
+        
+        function logout() {
+            const msgElement = document.getElementById('msg');
+            
+            axios.post('/logout')
+            .then(res => {
+                msgElement.innerText = res.data.message;
+                msgElement.className = 'message success';
+            });
+        }
+    </script>
+</body>
+</html>
